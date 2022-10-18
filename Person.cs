@@ -12,30 +12,33 @@ namespace TjuvOchPolis
         public List<Things> Inventory { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
+        public int Z { get; set; }
         public List<Person> People { get; set; } //Eventuellt i GameLoopen
         protected string PlayerMarker;
         protected ConsoleColor PlayerColor;
 
         
 
-        public Person(int InitialX, int InitialY)
+        public Person(int InitialX, int InitialY, int Direction)
         {
             X = InitialX;
             Y = InitialY;
+            Z = Direction;
             Inventory = new List<Things>(); //Lägg till i Thief/Police/Citizen
             PlayerMarker = "*";
             PlayerColor = ConsoleColor.Magenta;
+  
         }
 
-        public void AddGoods()
-        {
-            Inventory.Add(new Things());
-        }
+        //public void AddGoods()
+        //{
+        //    Inventory.Add(new Things());
+        //}
 
-        public void RemoveGoods()
-        { 
-            Inventory.RemoveAt(Inventory.Count - 1);
-        }
+        //public void RemoveGoods()
+        //{ 
+        //    Inventory.RemoveAt(Inventory.Count - 1);
+        //}
         public void Draw()
         {
             Console.ForegroundColor = PlayerColor;
@@ -43,53 +46,70 @@ namespace TjuvOchPolis
             Console.Write(PlayerMarker);
             Console.ResetColor();
         }
-        public void WalkUp(int x, int y)
+        public void WalkUp()
         {
-            Y = y--;
+            Y--;
         }
 
-        public void WalkDown(int x, int y)
+        public void WalkDown()
         {
-            Y = y++;
+            Y++;
         }
 
-        public void WalkLeft(int x, int y)
+        public void WalkLeft()
         {
-            X = x--;
+            X--;
         }
 
-        public void WalkRight(int x, int y)
+        public void WalkRight()
         {
-            X = x++;
+            X++;
         }
 
-        public void WalkUpRight(int x, int y)
+        public void WalkUpRight()
         {
-            Y = y--;
-            X = x++;
+            Y--;
+            X++;
         }
-        public void WalkUpLeft(int x, int y)
+        public void WalkUpLeft()
         {
-            Y = y--;
-            X = x--;
-        }
-
-        public void WalkDownRight(int x, int y)
-        {
-            Y = y++;
-            X = x++;
+            Y--;
+            X--;
         }
 
-        public void WalkDownLeft(int x, int y)
+        public void WalkDownRight()
         {
-            Y = y++;
-            X = x--;
+            Y++;
+            X++;
         }
 
-        public void StayStill(int x, int y)
+        public void WalkDownLeft()
         {
-            X = x;
-            Y = y;
+            Y++;
+            X--;
+        }
+
+        public void StayStill()
+        {
+            X = X;
+            Y = Y;
+        }
+
+        public void DirectionMove(int random)
+        {
+            switch(random)
+            {
+                case 0: WalkUp(); break;
+                case 1: WalkDown(); break;
+                case 2: WalkLeft(); break;
+                case 3: WalkRight(); break;
+                case 4: WalkUpLeft(); break;
+                case 5: WalkUpRight(); break;
+                case 6: WalkDownLeft(); break;
+                case 7: WalkDownRight(); break;
+                case 8: StayStill(); break;
+            }
+
         }
     }
 }

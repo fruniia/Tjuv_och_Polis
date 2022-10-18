@@ -8,7 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Police : Person
     {
-        public Police(int InitialX, int InitialY) : base(InitialX, InitialY)
+        public Police(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
         {
             PlayerMarker = "P";
             PlayerColor = ConsoleColor.Cyan;

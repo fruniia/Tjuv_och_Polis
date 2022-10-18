@@ -12,10 +12,10 @@ namespace TjuvOchPolis
 
         private City MyCity;
         string[,] city = new string[25, 100];
-        
+
         private Person Person;
         List<Person> persons = new List<Person>();
-            
+
 
         public void StartGame()
         {
@@ -26,50 +26,52 @@ namespace TjuvOchPolis
             Random random = new Random();
             int rows = city.GetLength(1);
             int cols = city.GetLength(0);
+            int direction = random.Next(0,9);
 
-
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 10; i++)
             {
 
-                Citizen citizen = new(random.Next(rows), random.Next(cols));
+                Citizen citizen = new(random.Next(rows), random.Next(cols),direction);
                 persons.Add(citizen);
-                if (i < 21)
-                {
-                    Police police = new(random.Next(rows), random.Next(cols));
-                    persons.Add(police);
+                        //Random för direction.
 
-                }
-                if (i < 10)
-                {
-                    Thief thief = new(random.Next(rows), random.Next(cols));
-                    persons.Add(thief);
-                }
+
+                //if (i < 21)
+                //{
+                //    Police police = new(random.Next(rows), random.Next(cols));
+                //    persons.Add(police);
+
+                //}
+                //if (i < 10)
+                //{
+                //    Thief thief = new(random.Next(rows), random.Next(cols));
+                //    persons.Add(thief);
+                //}
             }
+
+
 
 
             while (true)
             {
-                Draw();
+                Draw();    
             }
 
-        }
-
-        void Draw()
-        {
-            Console.Clear();
-            MyCity.DrawGrid();
-            foreach (Person person in persons)
+            void Draw()
             {
-                person.Draw();
+                Console.Clear();
+                MyCity.DrawGrid();
+                int direction = random.Next(0,9);
+                foreach (Person person in persons)
+                {
+                    person.Draw();
+                    person.DirectionMove(direction);            //If 1 gå så.
+                }
+
+
+                Console.ReadKey();
             }
-            Console.ReadKey();
-        }
-        public void DrawGame()
-        {
-            Console.Clear();
-
 
         }
-
     }
 }

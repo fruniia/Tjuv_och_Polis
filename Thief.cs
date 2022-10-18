@@ -8,7 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Thief : Person
     {
-        public Thief(int InitialX, int InitialY) : base(InitialX, InitialY)
+        public Thief(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
         {
             PlayerMarker = "T";
             PlayerColor = ConsoleColor.Red;

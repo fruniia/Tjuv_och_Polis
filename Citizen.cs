@@ -9,12 +9,14 @@ namespace TjuvOchPolis
 {
     internal class Citizen : Person
     {
-        public Citizen(int InitialX, int InitialY) : base(InitialX, InitialY)
+
+        public Citizen(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
         {
 
             PlayerMarker = "M";
             PlayerColor = ConsoleColor.Green;
             Inventory = new List<Things>();
+            
             
         }
 
