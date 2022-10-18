@@ -28,7 +28,7 @@ namespace TjuvOchPolis
             {
                 int direction = random.Next(4, 4);
 
-                Citizen citizen = new(77, 2, direction);/*new(random.Next(rows), random.Next(cols), direction);*/
+                Citizen citizen = new(60, 1, direction);/*new(random.Next(rows), random.Next(cols), direction);*/
                 persons.Add(citizen);
                 //Random för direction.
 
@@ -100,7 +100,13 @@ namespace TjuvOchPolis
                                 else if (person.Y == 0)
                                 {
                                     person.Y = ((rows - 1) - person.X);
-                                    person.X = rows - 1;
+                                    if (person.Y > cols)
+                                    {
+                                        person.Y = cols-1;
+                                        person.X = cols + person.X;
+                                    }
+                                    else if (person.Y < cols - 1)
+                                        person.X = rows - 1;
                                 }
                             }
                             break;
