@@ -8,7 +8,6 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
-
             Game game = new Game();
             game.StartGame();
 
@@ -27,8 +26,6 @@ namespace TjuvOchPolis
             // ->Stöldgodset hamnar i tjuvens inventory
             //Medborgare möter polis - Inget händer
             //Redovisa antal rånade medborgare //Antal gripna tjuvar
-
-
         }
     }
 }

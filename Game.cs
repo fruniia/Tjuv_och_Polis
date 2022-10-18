@@ -9,9 +9,8 @@ namespace TjuvOchPolis
 {
     internal class Game
     {
-
         private City MyCity;
-        string[,] city = new string[25, 100];
+        string[,] grid = new string[25, 100];
 
         private Person Person;
         List<Person> persons = new List<Person>();
@@ -20,17 +19,14 @@ namespace TjuvOchPolis
         public void StartGame()
         {
             Console.CursorVisible = false;
-            MyCity = new City(city);
-
-
+            MyCity = new City(grid);
             Random random = new Random();
-            int rows = city.GetLength(1);
-            int cols = city.GetLength(0);
+            int rows = grid.GetLength(1);
+            int cols = grid.GetLength(0);
             int direction = random.Next(0,9);
 
             for (int i = 0; i < 10; i++)
             {
-
                 Citizen citizen = new(random.Next(rows), random.Next(cols),direction);
                 persons.Add(citizen);
                         //Random för direction.
@@ -50,8 +46,6 @@ namespace TjuvOchPolis
             }
 
 
-
-
             while (true)
             {
                 Draw();    
@@ -67,11 +61,8 @@ namespace TjuvOchPolis
                     person.Draw();
                     person.DirectionMove(direction);            //If 1 gå så.
                 }
-
-
                 Console.ReadKey();
             }
-
         }
     }
 }
