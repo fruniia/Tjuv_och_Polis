@@ -19,7 +19,7 @@ namespace TjuvOchPolis
         public void StartGame()
         {
             Console.CursorVisible = false;
-            MyCity = new City(grid);
+            MyCity = new City(city);
             Random random = new Random();
             int rows = city.GetLength(0);
             int cols = city.GetLength(1);
@@ -99,8 +99,8 @@ namespace TjuvOchPolis
                                 }
                                 else if (person.Y == 0)
                                 {
-                                    person.Y = ((rows-1) - person.X);
-                                    person.X = rows-1;
+                                    person.Y = ((rows - 1) - person.X);
+                                    person.X = rows - 1;
                                 }
                             }
                             break;
@@ -116,6 +116,7 @@ namespace TjuvOchPolis
 
 
 
+            }
         }
     }
 }
