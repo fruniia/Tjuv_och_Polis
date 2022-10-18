@@ -12,6 +12,7 @@ namespace TjuvOchPolis
         public string Keys { get; set; }
         public string CellPhone { get; set; }
         public string Watch { get; set; }
+
         //public List<string> Inventory { get; set; }
 
         //List<Things> myInventory = new List<Things>();

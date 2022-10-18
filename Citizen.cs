@@ -11,11 +11,11 @@ namespace TjuvOchPolis
     {
         public Citizen(int InitialX, int InitialY) : base(InitialX, InitialY)
         {
-            //X = InitialX;
-            //Y = InitialY;
+
             PlayerMarker = "M";
             PlayerColor = ConsoleColor.Green;
             Inventory = new List<Things>();
+            
         }
 
         

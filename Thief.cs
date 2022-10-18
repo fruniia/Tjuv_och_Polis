@@ -10,8 +10,6 @@ namespace TjuvOchPolis
     {
         public Thief(int InitialX, int InitialY) : base(InitialX, InitialY)
         {
-            //X = InitialX;
-            //Y = InitialY;
             PlayerMarker = "T";
             PlayerColor = ConsoleColor.Red;
         }

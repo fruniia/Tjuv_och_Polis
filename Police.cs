@@ -10,11 +10,9 @@ namespace TjuvOchPolis
     {
         public Police(int InitialX, int InitialY) : base(InitialX, InitialY)
         {
-            //X = InitialX;
-            //Y = InitialY;
             PlayerMarker = "P";
             PlayerColor = ConsoleColor.Cyan;
-            Inventory = new List<Things>();
+            Inventory = new List<Things>();  
         }
 
         List<Things> confiscated = new List<Things>();

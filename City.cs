@@ -17,6 +17,7 @@ namespace TjuvOchPolis
             Grid = grid;
             Rows = Grid.GetLength(0);
             Cols = Grid.GetLength(1);
+            DrawGrid();
         }
 
         public void DrawGrid()
@@ -25,6 +26,7 @@ namespace TjuvOchPolis
             {
                 for (int cols = 0; cols < Grid.GetLength(1); cols++)
                 {
+                    string position = Grid[row, cols];
                     Console.Write(".");
                 }
                 Console.WriteLine();

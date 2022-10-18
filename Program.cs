@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Security.Cryptography.X509Certificates;
 
 namespace TjuvOchPolis
@@ -7,6 +8,11 @@ namespace TjuvOchPolis
     {
         static void Main(string[] args)
         {
+
+            Game game = new Game();
+            game.StartGame();
+
+
             //Person - Basklass
             //Tjuvar - T
             //Poliser - P
@@ -27,51 +33,58 @@ namespace TjuvOchPolis
             Console.CursorVisible = false;
 
 
-            string[,] city = new string[25, 100];
+            //string[,] city = new string[25, 100];
 
-            City grid = new City(city);
+            //City grid = new City(city);
             //grid.DrawGrid();
 
-            Random random = new Random();
-            int rows = city.GetLength(1);
-            int cols = city.GetLength(0);
+            //Random random = new Random();
+            //int rows = city.GetLength(1);
+            //int cols = city.GetLength(0);
 
-            List<Person> persons = new List<Person>();
-            //Citizen citizen = new Citizen(10, 0);
-            //Police police = new Police(12, 1);
-            //Thief thief = new Thief(14, 2);
-            for (int i = 0; i < 30; i++)
-            {
-                Citizen citizen = new(random.Next(rows), random.Next(cols));
-                persons.Add(citizen);
-                if (i < 21)
-                {
-                    Police police = new(random.Next(rows), random.Next(cols));
-                    persons.Add(police);
-                }
-                if (i < 10)
-                {
-                    Thief thief = new(random.Next(rows), random.Next(cols));
-                    persons.Add(thief);
-                }
-            }
+            //List<Person> persons = new List<Person>();
+            ////Citizen citizen = new Citizen(10, 0);
+            ////Police police = new Police(12, 1);
+            ////Thief thief = new Thief(14, 2);
+            //for (int i = 0; i < 30; i++)
+            //{
+                
+            //    Citizen citizen = new(random.Next(rows), random.Next(cols));
+            //    persons.Add(citizen);
+            //    if (i < 21)
+            //    {
+            //        Police police = new(random.Next(rows), random.Next(cols));
+            //        persons.Add(police);
+                    
+            //    }
+            //    if (i < 10)
+            //    {
+            //        Thief thief = new(random.Next(rows), random.Next(cols));
+            //        persons.Add(thief);
+            //    }
+            //}
 
 
-            Draw();
+            //while (true)
+            //{
+            //    Draw();
+            //    Console.Clear();
+            //}
 
-            void Draw()
-            {
-                //Console.Clear();
-                //citizen.Draw(); //Rita ut medborgare
-                //police.Draw(); //Rita ut poliser
-                //thief.Draw();  //Rita ut tjuvar
-                //grid.DrawGrid(); //Rita ut spelplanen
-                foreach (Person person in persons)
-                {
-                    person.Draw();
-                }
-                Console.ReadKey();
-            }
+            //void Draw()
+            //{
+            //    //Console.Clear();
+            //    //citizen.Draw(); //Rita ut medborgare
+            //    //police.Draw(); //Rita ut poliser
+            //    //thief.Draw();  //Rita ut tjuvar
+            //    //grid.DrawGrid(); //Rita ut spelplanen
+            //    foreach (Person person in persons)
+            //    {
+            //        person.Draw();
+                    
+            //    }
+            //    Console.ReadKey();
+            //}
 
         }
     }
