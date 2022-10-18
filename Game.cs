@@ -11,7 +11,7 @@ namespace TjuvOchPolis
     {
 
         private City MyCity;
-        string[,] city = new string[25, 100];
+        string[,] city = new string[100, 25];
 
         private Person Person;
         List<Person> persons = new List<Person>();
@@ -24,27 +24,27 @@ namespace TjuvOchPolis
 
 
             Random random = new Random();
-            int rows = city.GetLength(1);
-            int cols = city.GetLength(0);
-            int direction = random.Next(0,9);
+            int rows = city.GetLength(0);
+            int cols = city.GetLength(1);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 1; i++)
             {
+                int direction = random.Next(4, 4);
 
-                Citizen citizen = new(random.Next(rows), random.Next(cols),direction);
+                Citizen citizen = new(77, 2, direction);/*new(random.Next(rows), random.Next(cols), direction);*/
                 persons.Add(citizen);
-                        //Random för direction.
+                //Random för direction.
 
 
                 //if (i < 21)
                 //{
-                //    Police police = new(random.Next(rows), random.Next(cols));
+                //    Police police = new(random.Next(rows), random.Next(cols),direction);
                 //    persons.Add(police);
 
                 //}
                 //if (i < 10)
                 //{
-                //    Thief thief = new(random.Next(rows), random.Next(cols));
+                //    Thief thief = new(random.Next(rows), random.Next(cols),direction);
                 //    persons.Add(thief);
                 //}
             }
@@ -54,23 +54,71 @@ namespace TjuvOchPolis
 
             while (true)
             {
-                Draw();    
+                Draw();
             }
 
             void Draw()
             {
                 Console.Clear();
                 MyCity.DrawGrid();
-                int direction = random.Next(0,9);
+
                 foreach (Person person in persons)
                 {
                     person.Draw();
-                    person.DirectionMove(direction);            //If 1 gå så.
-                }
 
+                    switch (person.Z)
+                    {
+                        case 0:
+                            if (person.Y > 0)
+                            { person.WalkUp(); }
+                            else if (person.Y == 0)
+                                person.Y = cols - 1;
+                            break;
+                        case 1:
+                            if (person.Y < cols - 1)
+                            { person.WalkDown(); }
+                            else if (person.Y == cols - 1)
+                                person.Y = 0;
+                            break;
+                        case 2:
+                            if (person.X > 0)
+                            { person.WalkLeft(); }
+                            else if (person.X == 0)
+                                person.X = rows - 1;
+                            break;
+                        case 3:
+                            if (person.X < rows - 1)
+                            { person.WalkRight(); }
+                            else if (person.X == rows - 1)
+                                person.X = 0;
+                            break;
+                        case 4:
+                            if (person.X > 0 && person.Y > 0)
+                            { person.WalkUpLeft(); }
+                            else if (person.X == 0 || person.Y == 0)
+                            {
+                                if (person.X == 0)
+                                {
+                                    person.X = (cols - 1) - person.Y;
+                                    person.Y = cols - 1;
+                                }
+                                else if (person.Y == 0)
+                                {
+                                    person.Y = ((rows-1) - person.X);
+                                    person.X = rows-1;
+                                }
+                            }
+                            break;
+                        case 5: person.WalkUpRight(); break;
+                        case 6: person.WalkDownLeft(); break;
+                        case 7: person.WalkDownRight(); break;
+                        case 8: person.StayStill(); break;
+                    }
+                }
 
                 Console.ReadKey();
             }
+
 
         }
     }

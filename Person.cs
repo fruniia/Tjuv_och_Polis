@@ -13,7 +13,7 @@ namespace TjuvOchPolis
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
-        public List<Person> People { get; set; } //Eventuellt i GameLoopen
+
         protected string PlayerMarker;
         protected ConsoleColor PlayerColor;
 
