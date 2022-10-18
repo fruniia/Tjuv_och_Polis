@@ -8,37 +8,42 @@ namespace TjuvOchPolis
 {
     internal class Person
     {
-       
-        public List<Things> Inventory { get; set; }
+        //public List<Thing> Inventory { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
 
         protected string PlayerMarker;
         protected ConsoleColor PlayerColor;
-
-        
+        private int initialX;
+        private int initialY;
 
         public Person(int InitialX, int InitialY, int Direction)
         {
             X = InitialX;
             Y = InitialY;
             Z = Direction;
-            Inventory = new List<Things>(); //Lägg till i Thief/Police/Citizen
+           //Inventory = new List<Thing>(); //Lägg till i Thief/Police/Citizen
             PlayerMarker = "*";
             PlayerColor = ConsoleColor.Magenta;
-  
         }
 
-        //public void AddGoods()
-        //{
-        //    Inventory.Add(new Things());
-        //}
+        public Person(int initialX, int initialY)
+        {
+            this.initialX = initialX;
+            this.initialY = initialY;
+        }
 
-        //public void RemoveGoods()
-        //{ 
-        //    Inventory.RemoveAt(Inventory.Count - 1);
-        //}
+        public void AddGoods(List<Thing> things, string newThing)
+        {
+            things.Add(new Thing(newThing));
+        }
+
+        public void RemoveGoods(List<Thing> things)
+        {
+            //things.RemoveAt(things.Count - 1);
+        }
+
         public void Draw()
         {
             Console.ForegroundColor = PlayerColor;
@@ -46,6 +51,7 @@ namespace TjuvOchPolis
             Console.Write(PlayerMarker);
             Console.ResetColor();
         }
+
         public void WalkUp()
         {
             Y--;

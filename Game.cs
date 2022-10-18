@@ -9,7 +9,6 @@ namespace TjuvOchPolis
 {
     internal class Game
     {
-
         private City MyCity;
         string[,] city = new string[100, 25];
 
@@ -20,9 +19,7 @@ namespace TjuvOchPolis
         public void StartGame()
         {
             Console.CursorVisible = false;
-            MyCity = new City(city);
-
-
+            MyCity = new City(grid);
             Random random = new Random();
             int rows = city.GetLength(0);
             int cols = city.GetLength(1);
@@ -48,8 +45,6 @@ namespace TjuvOchPolis
                 //    persons.Add(thief);
                 //}
             }
-
-
 
 
             while (true)
@@ -116,8 +111,9 @@ namespace TjuvOchPolis
                     }
                 }
 
+
                 Console.ReadKey();
-            }
+
 
 
         }

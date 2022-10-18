@@ -8,13 +8,12 @@ namespace TjuvOchPolis
 {
     internal class Police : Person
     {
-        public Police(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
+        List<Thing> Confiscated = new List<Thing>();
+        public Police(int InitialX, int InitialY) : base(InitialX, InitialY)
         {
             PlayerMarker = "P";
             PlayerColor = ConsoleColor.Cyan;
-            Inventory = new List<Things>();  
         }
 
-        List<Things> confiscated = new List<Things>();
     }
 }

@@ -9,24 +9,16 @@ namespace TjuvOchPolis
 {
     internal class Citizen : Person
     {
+        public List<Thing> Belongings = new List<Thing>();
 
         public Citizen(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
         {
-
             PlayerMarker = "M";
             PlayerColor = ConsoleColor.Green;
-            Inventory = new List<Things>();
-            
-            
+            Belongings.Add(new Thing("wallet"));
+            Belongings.Add(new Thing("keys"));
+            Belongings.Add(new Thing("cellPhone"));
+            Belongings.Add(new Thing("watch"));
         }
-
-        
-
-
-
-
-
-
-
     }
 }
