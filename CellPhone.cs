@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    internal class CellPhone
+    internal class CellPhone : Thing
     {
+        public CellPhone() : base()
+        {
+            thingName = "CellPhone";
+        }
     }
 }

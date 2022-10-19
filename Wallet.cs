@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    internal class Wallet
+    internal class Wallet : Thing
     {
+        public Wallet() : base()
+        {
+            thingName = "wallet";
+        }
     }
 }

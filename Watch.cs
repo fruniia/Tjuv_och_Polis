@@ -8,8 +8,9 @@ namespace TjuvOchPolis
 {
     internal class Watch : Thing
     {
-        public Watch(string Name) : base(Name)
+        public Watch() : base()
         {
+            thingName = "watch";
         }
     }
 }

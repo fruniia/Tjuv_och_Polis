@@ -17,10 +17,9 @@ namespace TjuvOchPolis
 
         //List<Things> myInventory = new List<Things>();
 
-        public Thing(string Name)
+        public Thing()
         {
-            thingName = Name;
-            //Thing Money = new Thing("money");
+            thingName = "";
             //Wallet = "wallet";
             //Keys = "keys";
             //CellPhone = "cellPhone";

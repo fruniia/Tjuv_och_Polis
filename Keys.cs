@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
-    internal class Keys
+    internal class Keys : Thing
     {
+        public Keys() : base()
+        {
+            thingName = "Keys";
+        }
     }
 }
