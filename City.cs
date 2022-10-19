@@ -27,7 +27,7 @@ namespace TjuvOchPolis
                 {
                     //string element = Grid[row, cols];
                     //Console.SetCursorPosition(cols, cols);
-                    Console.Write(".");
+                    Console.Write(" ");
                 }
                 Console.WriteLine();
             }

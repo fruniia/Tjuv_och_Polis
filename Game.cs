@@ -57,6 +57,7 @@ namespace TjuvOchPolis
                 Console.Clear();
                 MyCity.DrawGrid();
 
+
                 foreach (Person person in persons)
                 {
                     person.Draw();
@@ -204,8 +205,8 @@ namespace TjuvOchPolis
                     }
                 }
 
-
-                Console.ReadKey();
+                Thread.Sleep(200);
+                //Console.ReadKey();
 
 
 
