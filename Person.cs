@@ -47,8 +47,8 @@ namespace TjuvOchPolis
         public void Draw()
         {
             Console.ForegroundColor = PlayerColor;
-            
-            
+
+
             Console.SetCursorPosition(X, Y);
             Console.Write(PlayerMarker);
             Console.ResetColor();
@@ -103,21 +103,21 @@ namespace TjuvOchPolis
             Y = Y;
         }
 
-        public void DirectionMove(int random)
-        {
-            switch(random)
-            {
-                case 0: WalkUp(); break;
-                case 1: WalkDown(); break;
-                case 2: WalkLeft(); break;
-                case 3: WalkRight(); break;
-                case 4: WalkUpLeft(); break;
-                case 5: WalkUpRight(); break;
-                case 6: WalkDownLeft(); break;
-                case 7: WalkDownRight(); break;
-                case 8: StayStill(); break;
-            }
+        //public void DirectionMove(int random)
+        //{
+        //    switch(random)
+        //    {
+        //        case 0: WalkUp(); break;
+        //        case 1: WalkDown(); break;
+        //        case 2: WalkLeft(); break;
+        //        case 3: WalkRight(); break;
+        //        case 4: WalkUpLeft(); break;
+        //        case 5: WalkUpRight(); break;
+        //        case 6: WalkDownLeft(); break;
+        //        case 7: WalkDownRight(); break;
+        //        case 8: StayStill(); break;
+        //    }
 
-        }
+        //}
     }
 }

@@ -50,6 +50,9 @@ namespace TjuvOchPolis
             while (true)
             {
                 Draw();
+
+                ListOfPersons();
+                Console.ReadKey();
             }
 
             void Draw()
@@ -206,10 +209,19 @@ namespace TjuvOchPolis
                 }
 
                 Thread.Sleep(200);
-                //Console.ReadKey();
+                Console.ReadKey();
 
 
 
+            }
+        }
+
+        private void ListOfPersons()
+        {
+            for (int i = 0; i < persons.Count; i++)
+            {
+
+                Console.WriteLine($"{persons[i].GetType().Name}  {persons[i].X}, {persons[i].Y}");
             }
         }
     }
