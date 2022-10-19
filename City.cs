@@ -33,11 +33,5 @@ namespace TjuvOchPolis
             }
             Console.WriteLine();
         }
-
-        public string GetElementAt(int x, int y)
-        {
-
-            return Grid[x, y];
-        }
     }
 }
