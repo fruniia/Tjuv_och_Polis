@@ -30,6 +30,8 @@ namespace TjuvOchPolis
 
                 Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
                 persons.Add(citizen);
+                //Random för direction.
+
 
                 if (i < 21)
                 {
@@ -44,13 +46,10 @@ namespace TjuvOchPolis
                 }
             }
 
-            string position;
 
             while (true)
             {
                 Draw();
-                //Kolla positionerna gentemot varandra.
-                //for loop x 2
                 ListOfPersons();
                 Console.ReadKey();
             }
@@ -218,35 +217,10 @@ namespace TjuvOchPolis
 
         private void ListOfPersons()
         {
-            Console.SetCursorPosition(0,26);
             for (int i = 0; i < persons.Count; i++)
             {
-                Console.Write($"{persons[i].GetType().Name}:   {persons[i].X}, {persons[i].Y} ");
-                if (persons[i] is Citizen)
-                {
-                    var a = ((Citizen)persons[i]).Belongings;
-                    foreach (var b in a.ToList())
-                    {
-                        Console.Write($"{b.thingName} ");
-                    }
-                }
-                else if (persons[i] is Thief)
-                {
-                    var a = ((Thief)persons[i]).StolenGoods;
-                    foreach (var b in a.ToList())
-                    {
-                        Console.Write($"{b.thingName} ");
-                    }
-                }
-                else if (persons[i] is Police)
-                {
-                    var a = ((Police)persons[i]).Confiscated;
-                    foreach (var b in a.ToList())
-                    {
-                        Console.Write($"{b.thingName} ");
-                    }
-                }
-                Console.WriteLine($"");
+
+                Console.WriteLine($"{persons[i].GetType().Name}  {persons[i].X}, {persons[i].Y}");
             }
         }
     }
