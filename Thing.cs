@@ -19,7 +19,8 @@ namespace TjuvOchPolis
 
         public Thing(string Name)
         {
-            thingName = Name;   
+            thingName = Name;
+            //Thing Money = new Thing("money");
             //Wallet = "wallet";
             //Keys = "keys";
             //CellPhone = "cellPhone";
