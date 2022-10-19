@@ -15,10 +15,10 @@ namespace TjuvOchPolis
         {
             PlayerMarker = "M";
             PlayerColor = ConsoleColor.Green;
-            Belongings.Add(new Thing("wallet"));
-            Belongings.Add(new Thing("keys"));
-            Belongings.Add(new Thing("cellPhone"));
-            Belongings.Add(new Thing("watch"));
+            Belongings.Add(new Wallet());
+            Belongings.Add(new Keys());
+            Belongings.Add(new Watch());
+            Belongings.Add(new CellPhone());
         }
     }
 }
