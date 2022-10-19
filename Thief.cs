@@ -8,7 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Thief : Person
     {
-        List<Thing> StolenGoods = new List<Thing>();
+        public List<Thing> StolenGoods = new List<Thing>();
         public Thief(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
         {
             PlayerMarker = "T";
