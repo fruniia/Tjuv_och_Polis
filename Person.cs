@@ -8,7 +8,6 @@ namespace TjuvOchPolis
 {
     internal class Person
     {
-        //public List<Thing> Inventory { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int Z { get; set; }
@@ -23,7 +22,7 @@ namespace TjuvOchPolis
             X = InitialX;
             Y = InitialY;
             Z = Direction;
-           //Inventory = new List<Thing>(); //Lägg till i Thief/Police/Citizen
+
             PlayerMarker = "*";
             PlayerColor = ConsoleColor.Magenta;
         }
@@ -34,9 +33,9 @@ namespace TjuvOchPolis
             this.initialY = initialY;
         }
 
-        public void AddGoods(List<Thing> things, string newThing)
+        public void AddGoods(List<Thing> things)
         {
-            things.Add(new Thing(newThing));
+            things.Add(new Thing());
         }
 
         public void RemoveGoods(List<Thing> things)
