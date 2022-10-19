@@ -24,26 +24,26 @@ namespace TjuvOchPolis
             int rows = city.GetLength(0);
             int cols = city.GetLength(1);
 
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 30; i++)
             {
-                int direction = random.Next(4, 4);
+                int direction = random.Next(0, 8);
 
-                Citizen citizen = new(60, 1, direction);/*new(random.Next(rows), random.Next(cols), direction);*/
+                Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
                 persons.Add(citizen);
                 //Random för direction.
 
 
-                //if (i < 21)
-                //{
-                //    Police police = new(random.Next(rows), random.Next(cols),direction);
-                //    persons.Add(police);
+                if (i < 21)
+                {
+                    Police police = new(random.Next(rows), random.Next(cols), direction);
+                    persons.Add(police);
 
-                //}
-                //if (i < 10)
-                //{
-                //    Thief thief = new(random.Next(rows), random.Next(cols),direction);
-                //    persons.Add(thief);
-                //}
+                }
+                if (i < 10)
+                {
+                    Thief thief = new(random.Next(rows), random.Next(cols), direction);
+                    persons.Add(thief);
+                }
             }
 
 
@@ -102,7 +102,7 @@ namespace TjuvOchPolis
                                     person.Y = ((rows - 1) - person.X);
                                     if (person.Y > cols)
                                     {
-                                        person.Y = cols-1;
+                                        person.Y = cols - 1;
                                         person.X = cols + person.X;
                                     }
                                     else if (person.Y < cols - 1)
@@ -110,9 +110,96 @@ namespace TjuvOchPolis
                                 }
                             }
                             break;
-                        case 5: person.WalkUpRight(); break;
-                        case 6: person.WalkDownLeft(); break;
-                        case 7: person.WalkDownRight(); break;
+                        case 5:
+                            if (person.X < rows - 1 && person.Y > 0)
+                            { person.WalkUpRight(); }
+                            else if (person.X == rows - 1 || person.Y == 0)
+                            {
+                                if (person.X == rows - 1)
+                                {
+                                    person.X = (rows - 1) - ((cols - 1) - person.Y);
+                                    person.Y = cols - 1;
+                                }
+                                else if (person.Y == 0)
+                                {
+                                    person.Y = ((rows - 1) - person.X);
+                                    if (person.Y < cols - 1)
+                                    {
+                                        person.Y = cols - 1;
+                                        person.X = person.X - (cols - 1);
+                                    }
+                                    else if (person.Y > cols - 1)
+                                    {
+                                        person.Y = person.X;
+                                        if (person.X > cols - 1)
+                                        {
+                                            person.Y = cols - 1;
+                                            person.X = person.X - (cols - 1);
+                                        }
+                                        else
+                                            person.X = 0;
+                                    }
+                                }
+                            }
+                            break;
+                        case 6:
+                            if (person.X > 0 && person.Y < cols - 1)
+                            { person.WalkDownLeft(); }
+                            else if (person.X == 0 || person.Y == cols - 1)
+                            {
+                                if (person.X == 0)
+                                {
+                                    person.X = person.Y;
+                                    person.Y = 0;
+                                }
+                                else if (person.Y == cols - 1)
+                                {
+                                    person.Y = ((rows - 1) - person.X);
+                                    if (person.Y > cols)
+                                    {
+                                        person.Y = 0;
+                                        person.X = (cols - 1) + person.X;
+                                    }
+                                    else if (person.Y < cols - 1)
+                                    {
+                                        person.Y = (rows - 1) - person.X;
+                                        person.Y = (cols - 1) - person.Y;
+                                        person.X = rows - 1;
+                                    }
+                                }
+                            }
+                            break;
+                        case 7:
+                            if (person.X < rows - 1 && person.Y < cols - 1)
+                            { person.WalkDownRight(); }
+                            else if (person.X == rows - 1 || person.Y == cols - 1)
+                            {
+                                if (person.X == rows - 1)
+                                {
+                                    person.X = (rows - 1) - person.Y;
+                                    person.Y = 0;
+                                }
+                                else if (person.Y == cols - 1)
+                                {
+                                    person.Y = ((rows - 1) - person.X);
+                                    if (person.Y > cols)
+                                    {
+                                        person.Y = 0;
+                                        person.X = person.X - (cols - 1);
+                                        if (person.X < 0)
+                                        {
+                                            person.Y = (-person.X);
+                                            person.X = 0;
+                                        }
+                                    }
+                                    else if (person.Y < cols - 1)
+                                    {
+                                        person.Y = 0;
+                                        person.X = person.X - (cols - 1);
+                                    }
+                                }
+                            }
+                            break;
                         case 8: person.StayStill(); break;
                     }
                 }
