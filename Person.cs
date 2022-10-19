@@ -43,6 +43,14 @@ namespace TjuvOchPolis
             //things.RemoveAt(things.Count - 1);
         }
 
+        public void ShowGoods(List<Thing> things) 
+        {
+            foreach (Thing thing in things)
+            { 
+            Console.WriteLine(thing.thingName);
+            }
+        }
+
         public void Draw()
         {
             Console.ForegroundColor = PlayerColor;
