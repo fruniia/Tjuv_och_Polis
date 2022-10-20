@@ -25,16 +25,16 @@ namespace TjuvOchPolis
             {
                 int direction = random.Next(0, 8);
 
-                Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
-                persons.Add(citizen);
+                //Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
+                //persons.Add(citizen);
 
-                if (i < 21)
+                if (i < 31)
                 {
                     Police police = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(police);
 
                 }
-                if (i < 11)
+                if (i < 31)
                 {
                     Thief thief = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(thief);
@@ -46,6 +46,37 @@ namespace TjuvOchPolis
                 Draw();
                 //Kolla positionerna gentemot varandra.
                 //for loop x 2
+                for (int i = 0; i < persons.Count; i++)
+                {
+                    for (int j = 0; j < persons.Count; j++)
+                    {
+                        if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y)
+                        {
+                            if (persons[i] is Police && persons[j] is Thief)
+                            {
+                                if (((Thief)persons[j]).StolenGoods.Count > 0)
+                                {
+                                    ((Police)persons[i]).AddGoods(((Thief)persons[j]).StolenGoods);
+                                    ((Thief)persons[j]).StolenGoods.Clear();
+                                    ((Thief)persons[j]).Arrested = true;
+                                }
+                                Console.WriteLine($"PT {persons[i].X} {persons[i].Y}");
+                            }
+                            if (persons[i] is Citizen && persons[j] is Thief)
+                            {
+                                if (((Citizen)persons[i]).Belongings.Count > 0)
+                                {
+                                    int removeThing = random.Next(0, ((Citizen)persons[i]).Belongings.Count);
+                                    ((Thief)persons[j]).AddGoods(((Citizen)persons[i]).Belongings, removeThing);
+                                    ((Citizen)persons[i]).RemoveGoods(removeThing);
+                                }
+                                Console.WriteLine($"CT {persons[i].X} {persons[i].Y}");
+                            }
+
+                        }
+                        //Om (Thief || Citizen)
+                    }
+                }
                 ListOfPersons();
                 Console.ReadKey();
             }
@@ -207,7 +238,7 @@ namespace TjuvOchPolis
 
         private void ListOfPersons()
         {
-            Console.SetCursorPosition(0,26);
+            Console.SetCursorPosition(0, 26);
             for (int i = 0; i < persons.Count; i++)
             {
                 Console.Write($"{persons[i].GetType().Name}:   {persons[i].X}, {persons[i].Y} ");

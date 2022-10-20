@@ -16,5 +16,13 @@ namespace TjuvOchPolis
             Confiscated = new List<Thing>();
         }
 
+        public override void AddGoods(List<Thing> things)
+        {
+            foreach (Thing thing in things)
+            {
+                Confiscated.Add(thing);
+            }
+        }
+
     }
 }

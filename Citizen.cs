@@ -20,5 +20,10 @@ namespace TjuvOchPolis
             Belongings.Add(new Watch());
             Belongings.Add(new CellPhone());
         }
+
+        public void RemoveGoods(int removeThing)
+        {
+            Belongings.RemoveAt(removeThing);
+        }
     }
 }

@@ -33,14 +33,14 @@ namespace TjuvOchPolis
             this.initialY = initialY;
         }
 
-        public void AddGoods(List<Thing> things)
+        public virtual void AddGoods(List<Thing> things)
         {
-            things.Add(new Thing());
+                things.Add(new Thing());
         }
 
-        public void RemoveGoods(List<Thing> things)
+        public virtual void RemoveGoods(List<Thing> things)
         {
-            //things.RemoveAt(things.Count - 1);
+            things.RemoveAt(things.Count);
         }
 
         public void ShowGoods(List<Thing> things) 
