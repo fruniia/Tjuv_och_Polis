@@ -8,9 +8,9 @@ namespace TjuvOchPolis
 {
     internal class City
     {
-        private string[,] Grid { get; set; }
-        private int Rows;
-        private int Cols;
+        public string[,] Grid { get; set; }
+        public int Rows;
+        public int Cols;
 
         public City(string[,] grid)
         {
@@ -19,7 +19,7 @@ namespace TjuvOchPolis
             Rows = Grid.GetLength(1);
         }
 
-        public void DrawGrid()
+        public virtual void DrawGrid()
         {
             for (int row = 0; row < Rows; row++)
             {

@@ -47,7 +47,7 @@ namespace TjuvOchPolis
         {
             foreach (Thing thing in things)
             { 
-            Console.WriteLine(thing.thingName);
+            Console.Write(thing.thingName);
             }
         }
 

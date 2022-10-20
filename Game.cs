@@ -10,13 +10,16 @@ namespace TjuvOchPolis
     internal class Game
     {
         private City? MyCity;
+        private Prison MyPrison;
         string[,] city = new string[100, 25];
+        string[,] prison = new string[11, 11];
         List<Person> persons = new List<Person>();
 
         public void StartGame()
         {
             Console.CursorVisible = false;
             MyCity = new City(city);
+            MyPrison = new Prison(prison);
             Random random = new Random();
             int rows = city.GetLength(0);
             int cols = city.GetLength(1);
@@ -90,6 +93,8 @@ namespace TjuvOchPolis
             {
                 Console.Clear();
                 MyCity.DrawGrid();
+                MyPrison.DrawGrid();
+                
 
                 foreach (Person person in persons)
                 {
