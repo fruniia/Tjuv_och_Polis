@@ -63,7 +63,7 @@ namespace TjuvOchPolis
                                     ((Thief)persons[j]).StolenGoods.Clear();
                                     ((Thief)persons[j]).Arrested = true;
                                     //Ändra P & T till en Stjärna *
-                                    Console.SetCursorPosition(0, 26);
+                                    Console.SetCursorPosition(35, 26);
                                     Console.WriteLine($"Polis tar tjuv på position {persons[i].X} {persons[i].Y}");
                                     Thread.Sleep(2000);
                                 }
@@ -76,7 +76,7 @@ namespace TjuvOchPolis
                                     int removeThing = random.Next(0, ((Citizen)persons[i]).Belongings.Count);
                                     ((Thief)persons[j]).AddGoods(((Citizen)persons[i]).Belongings, removeThing);
                                     ((Citizen)persons[i]).RemoveGoods(removeThing);
-                                    Console.SetCursorPosition(0, 27);
+                                    Console.SetCursorPosition(35, 27);
                                     Console.WriteLine($"Tjuv rånar medborgare på position {persons[i].X} {persons[i].Y}");
                                     Thread.Sleep(2000);
                                     //Ändra C & T till en Stjärna *
@@ -85,7 +85,6 @@ namespace TjuvOchPolis
                         }
                     }
                 }
-                //ListOfPersons();
                 //Console.ReadKey();
             }
 
@@ -94,6 +93,7 @@ namespace TjuvOchPolis
                 Console.Clear();
                 MyCity.DrawGrid();
                 MyPrison.DrawGrid();
+                ListOfPersons();
                 
 
                 foreach (Person person in persons)
@@ -242,16 +242,18 @@ namespace TjuvOchPolis
                     }
                 }
                 Thread.Sleep(200);
-                //Console.ReadKey();
+                
             }
         }
 
         private void ListOfPersons()
         {
-            Console.SetCursorPosition(0, 26);
+            int count = 0;
             for (int i = 0; i < persons.Count; i++)
             {
-                Console.Write($"{persons[i].GetType().Name}:   {persons[i].X}, {persons[i].Y} ");
+                Console.SetCursorPosition(101, count);
+
+                Console.Write($"{persons[i].GetType().Name}:\t{persons[i].X}, {persons[i].Y}\t");
                 if (persons[i] is Citizen)
                 {
                     var a = ((Citizen)persons[i]).Belongings;
@@ -277,6 +279,7 @@ namespace TjuvOchPolis
                     }
                 }
                 Console.WriteLine($"");
+                count++;
             }
         }
     }
