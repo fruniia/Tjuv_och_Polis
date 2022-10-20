@@ -54,8 +54,6 @@ namespace TjuvOchPolis
         public void Draw()
         {
             Console.ForegroundColor = PlayerColor;
-
-
             Console.SetCursorPosition(X, Y);
             Console.Write(PlayerMarker);
             Console.ResetColor();

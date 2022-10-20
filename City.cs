@@ -19,7 +19,7 @@ namespace TjuvOchPolis
             Rows = Grid.GetLength(1);
         }
 
-        public virtual void DrawGrid()
+        public void DrawGrid()
         {
             for (int row = 0; row < Rows; row++)
             {

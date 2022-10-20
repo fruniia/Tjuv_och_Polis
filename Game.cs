@@ -14,10 +14,13 @@ namespace TjuvOchPolis
         string[,] city = new string[100, 25];
         string[,] prison = new string[11, 11];
         List<Person> persons = new List<Person>();
+        List<Thief> thieves = new List<Thief>();
+        int numberOfRobberys = 0;
 
         public void StartGame()
         {
             Console.CursorVisible = false;
+            Console.Title = "Tjuv och polis";
             MyCity = new City(city);
             MyPrison = new Prison(prison);
             Random random = new Random();
@@ -31,13 +34,13 @@ namespace TjuvOchPolis
                 Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
                 persons.Add(citizen);
 
-                if (i < 31)
+                if (i < 30)
                 {
                     Police police = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(police);
 
                 }
-                if (i < 31)
+                if (i < 30)
                 {
                     Thief thief = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(thief);
@@ -62,17 +65,25 @@ namespace TjuvOchPolis
                                     ((Police)persons[i]).AddGoods(((Thief)persons[j]).StolenGoods);
                                     ((Thief)persons[j]).StolenGoods.Clear();
                                     ((Thief)persons[j]).Arrested = true;
+                                    if (((Thief)persons[j]).Arrested == true)
+                                    {
+                                        thieves.Add((Thief)persons[j]);
+                                        persons.RemoveAt(j);
+                                    }
+
                                     //Ändra P & T till en Stjärna *
                                     Console.SetCursorPosition(35, 26);
                                     Console.WriteLine($"Polis tar tjuv på position {persons[i].X} {persons[i].Y}");
                                     Thread.Sleep(2000);
                                 }
-                                
+
                             }
                             if (persons[i] is Citizen && persons[j] is Thief)
                             {
                                 if (((Citizen)persons[i]).Belongings.Count > 0)
                                 {
+                                    numberOfRobberys++;
+
                                     int removeThing = random.Next(0, ((Citizen)persons[i]).Belongings.Count);
                                     ((Thief)persons[j]).AddGoods(((Citizen)persons[i]).Belongings, removeThing);
                                     ((Citizen)persons[i]).RemoveGoods(removeThing);
@@ -92,13 +103,22 @@ namespace TjuvOchPolis
             {
                 Console.Clear();
                 MyCity.DrawGrid();
-                MyPrison.DrawGrid();
+                MyPrison.DrawGrid(thieves);
+                Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
                 ListOfPersons();
-                
+
 
                 foreach (Person person in persons)
                 {
+                    if (person is Thief && ((Thief)person).Arrested == true)
+                    {
+                        rows = MyPrison.Rows;
+                        cols = MyPrison.Cols;
+                        ((Thief)person).Draw();
+                    }
                     person.Draw();
+
+
                     switch (person.Z)
                     {
                         case 0:
@@ -242,7 +262,7 @@ namespace TjuvOchPolis
                     }
                 }
                 Thread.Sleep(200);
-                
+
             }
         }
 
