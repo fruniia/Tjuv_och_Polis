@@ -25,8 +25,8 @@ namespace TjuvOchPolis
             {
                 int direction = random.Next(0, 8);
 
-                //Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
-                //persons.Add(citizen);
+                Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
+                persons.Add(citizen);
 
                 if (i < 31)
                 {
@@ -59,8 +59,12 @@ namespace TjuvOchPolis
                                     ((Police)persons[i]).AddGoods(((Thief)persons[j]).StolenGoods);
                                     ((Thief)persons[j]).StolenGoods.Clear();
                                     ((Thief)persons[j]).Arrested = true;
+                                    //Ändra P & T till en Stjärna *
+                                    Console.SetCursorPosition(0, 26);
+                                    Console.WriteLine($"Polis tar tjuv på position {persons[i].X} {persons[i].Y}");
+                                    Thread.Sleep(2000);
                                 }
-                                Console.WriteLine($"PT {persons[i].X} {persons[i].Y}");
+                                
                             }
                             if (persons[i] is Citizen && persons[j] is Thief)
                             {
@@ -69,16 +73,17 @@ namespace TjuvOchPolis
                                     int removeThing = random.Next(0, ((Citizen)persons[i]).Belongings.Count);
                                     ((Thief)persons[j]).AddGoods(((Citizen)persons[i]).Belongings, removeThing);
                                     ((Citizen)persons[i]).RemoveGoods(removeThing);
+                                    Console.SetCursorPosition(0, 27);
+                                    Console.WriteLine($"Tjuv rånar medborgare på position {persons[i].X} {persons[i].Y}");
+                                    Thread.Sleep(2000);
+                                    //Ändra C & T till en Stjärna *
                                 }
-                                Console.WriteLine($"CT {persons[i].X} {persons[i].Y}");
                             }
-
                         }
-                        //Om (Thief || Citizen)
                     }
                 }
-                ListOfPersons();
-                Console.ReadKey();
+                //ListOfPersons();
+                //Console.ReadKey();
             }
 
             void Draw()
@@ -232,7 +237,7 @@ namespace TjuvOchPolis
                     }
                 }
                 Thread.Sleep(200);
-                Console.ReadKey();
+                //Console.ReadKey();
             }
         }
 
