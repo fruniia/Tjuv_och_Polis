@@ -9,12 +9,9 @@ namespace TjuvOchPolis
 {
     internal class Game
     {
-        private City MyCity;
+        private City? MyCity;
         string[,] city = new string[100, 25];
-
-        private Person Person;
         List<Person> persons = new List<Person>();
-
 
         public void StartGame()
         {
@@ -37,14 +34,12 @@ namespace TjuvOchPolis
                     persons.Add(police);
 
                 }
-                if (i < 10)
+                if (i < 11)
                 {
                     Thief thief = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(thief);
                 }
             }
-
-            string position;
 
             while (true)
             {
@@ -60,11 +55,9 @@ namespace TjuvOchPolis
                 Console.Clear();
                 MyCity.DrawGrid();
 
-
                 foreach (Person person in persons)
                 {
                     person.Draw();
-
                     switch (person.Z)
                     {
                         case 0:
@@ -207,12 +200,8 @@ namespace TjuvOchPolis
                         case 8: person.StayStill(); break;
                     }
                 }
-
                 Thread.Sleep(200);
                 Console.ReadKey();
-
-
-
             }
         }
 

@@ -15,7 +15,7 @@ namespace TjuvOchPolis
         {
             PlayerMarker = "M";
             PlayerColor = ConsoleColor.Green;
-            Belongings.Add(new Wallet());
+            Belongings.Add(new Money());
             Belongings.Add(new Keys());
             Belongings.Add(new Watch());
             Belongings.Add(new CellPhone());

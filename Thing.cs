@@ -8,8 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Thing
     {
-        public string thingName { get; set; }
-        
+        public string thingName { get; set; }        
         public Thing()
         {
             thingName = "";
