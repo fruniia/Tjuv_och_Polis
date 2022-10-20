@@ -16,6 +16,7 @@ namespace TjuvOchPolis
         List<Person> persons = new List<Person>();
         List<Thief> thieves = new List<Thief>();
         int numberOfRobberys = 0;
+        Random random = new Random();
 
         public void StartGame()
         {
@@ -23,7 +24,6 @@ namespace TjuvOchPolis
             Console.Title = "Tjuv och polis";
             MyCity = new City(city);
             MyPrison = new Prison(prison);
-            Random random = new Random();
             int rows = city.GetLength(0);
             int cols = city.GetLength(1);
 
@@ -97,14 +97,16 @@ namespace TjuvOchPolis
                     }
                 }
                 //Console.ReadKey();
+                DrawThief();
             }
 
             void Draw()
             {
                 Console.Clear();
                 MyCity.DrawGrid();
-                MyPrison.DrawGrid(thieves);
-                Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
+                //MyPrison.DrawGrid(thieves);
+                //Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
+                DrawThief();
                 ListOfPersons();
 
 
@@ -266,6 +268,7 @@ namespace TjuvOchPolis
             }
         }
 
+
         private void ListOfPersons()
         {
             int count = 0;
@@ -301,6 +304,171 @@ namespace TjuvOchPolis
                 Console.WriteLine($"");
                 count++;
             }
+        }
+        private void DrawThief()
+        {
+            Console.SetCursorPosition(0, 26);
+            MyPrison.DrawGrid(thieves);
+            Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
+
+            foreach (Thief person in thieves)
+            {
+                int rows = 11;
+                int cols = 37;
+                int randomX = random.Next(1, 10);
+                int randomY = random.Next(26, 36);
+
+                if (person.X < 100 && person.Y < 25)
+                {
+                    person.X = randomX;
+                    person.Y = randomY;
+                }
+
+                person.Draw();
+                
+                switch (person.Z)
+                {
+                    case 0:
+                        if (person.Y > 27)
+                        { person.WalkUp(); }
+                        else if (person.Y == 27)
+                            person.Y = cols;
+                        break;
+                    case 1:
+                        if (person.Y < cols - 1)
+                        { person.WalkDown(); }
+                        else if (person.Y == cols - 1)
+                            person.Y = 27;
+                        break;
+                    case 2:
+                        if (person.X > 1)
+                        { person.WalkLeft(); }
+                        else if (person.X == 1)
+                            person.X = rows - 1;
+                        break;
+                    case 3:
+                        if (person.X < rows - 1)
+                        { person.WalkRight(); }
+                        else if (person.X == rows - 1)
+                            person.X = 1;
+                        break;
+                    case 4:
+                        if (person.X > 1 && person.Y > 26)
+                        { person.WalkUpLeft(); }
+                        else if (person.X == 1 || person.Y == 26)
+                        {
+                            if (person.X == 1)
+                            {
+                                person.X = (cols - 1) - person.Y;
+                                person.Y = cols - 1;
+                            }
+                            else if (person.Y == 26)
+                            {
+                                person.Y = ((rows - 1) - person.X);
+                                if (person.Y > cols)
+                                {
+                                    person.Y = cols - 1;
+                                    person.X = cols + person.X;
+                                }
+                                else if (person.Y < cols - 1)
+                                    person.X = rows - 1;
+                            }
+                        }
+                        break;
+                    case 5:
+                        if (person.X < rows - 1 && person.Y > 26)
+                        { person.WalkUpRight(); }           //Fungerar men ej rätt matematik.
+                        else if (person.X == rows - 1 || person.Y == 26)
+                        {
+                            if (person.X == rows - 1)
+                            {
+                                person.X = (rows - 1) - ((cols - 1) - person.Y);
+                                person.Y = cols - 1;
+                            }
+                            else if (person.Y == 26)
+                            {
+                                person.Y = ((rows - 1) - person.X);
+                                if (person.Y < cols - 1)
+                                {
+                                    person.Y = cols - 1;
+                                    person.X = 1;
+                                }
+                                else if (person.Y > cols - 1)
+                                {
+                                    person.Y = person.X;
+                                    if (person.X > cols - 1)
+                                    {
+                                        person.Y = cols - 1;
+                                        person.X = person.X - (cols - 1);
+                                    }
+                                    else
+                                        person.X = 1;
+                                }
+                            }
+                        }
+                        break;
+                    case 6:
+                        if (person.X > 1 && person.Y < cols - 1)
+                        { person.WalkDownLeft(); }          //Fungerar men ej rätt matematik.
+                        else if (person.X == 1 || person.Y == cols - 1)
+                        {
+                            if (person.X == 1)
+                            {
+                                person.X = (cols-1) - person.Y;
+                                person.Y = 27;
+                            }
+                            else if (person.Y == cols - 1)
+                            {
+                                person.Y = ((rows - 1) - person.X);
+                                if (person.Y > cols)
+                                {
+                                    person.Y = 26;
+                                    person.X = (cols - 1) + person.X;
+                                }
+                                else if (person.Y < cols - 1)
+                                {
+                                    person.Y = (rows - 1) - person.X;
+                                    person.Y = (cols - 1) - person.Y;
+                                    person.X = rows - 1;
+                                }
+                            }
+                        }
+                        break;
+                    case 7:
+                        if (person.X < rows - 1 && person.Y < cols - 1)
+                        { person.WalkDownRight(); }
+                        else if (person.X == rows - 1 || person.Y == cols - 1)
+                        {
+                            if (person.X == rows - 1)
+                            {
+                                person.X = rows - person.X;
+                                person.Y = 27;
+                            }
+                            else if (person.Y == cols - 1)
+                            {
+                                person.Y = ((rows - 1) - person.X);
+                                if (person.Y > cols)
+                                {
+                                    person.Y = 27;
+                                    person.X = person.X - (cols - 1);
+                                    if (person.X < 1)
+                                    {
+                                        person.Y = 26;
+                                        person.X = 1;
+                                    }
+                                }
+                                else if (person.Y < cols - 1)
+                                {
+                                    person.Y = 26;
+                                    person.X = 1;
+                                }
+                            }
+                        } //Fungerar men ej rätt matematik.
+                        break;
+                    case 8: person.StayStill(); break;
+                }
+            }
+
         }
     }
 }

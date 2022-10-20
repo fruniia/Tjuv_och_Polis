@@ -15,7 +15,6 @@ namespace TjuvOchPolis
             PlayerMarker = "T";
             PlayerColor = ConsoleColor.Red;
             Arrested = false;
-
         }
 
         public void AddGoods(List<Thing> things, int oneThing)
