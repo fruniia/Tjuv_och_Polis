@@ -50,8 +50,6 @@ namespace TjuvOchPolis
             while (true)
             {
                 Draw();
-                //Kolla positionerna gentemot varandra.
-                //for loop x 2
                 for (int i = 0; i < persons.Count; i++)
                 {
                     for (int j = 0; j < persons.Count; j++)
@@ -104,23 +102,13 @@ namespace TjuvOchPolis
             {
                 Console.Clear();
                 MyCity.DrawGrid();
-                //MyPrison.DrawGrid(thieves);
-                //Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
                 DrawThief();
                 ListOfPersons();
 
 
                 foreach (Person person in persons)
                 {
-                    if (person is Thief && ((Thief)person).Arrested == true)
-                    {
-                        rows = MyPrison.Rows;
-                        cols = MyPrison.Cols;
-                        ((Thief)person).Draw();
-                    }
                     person.Draw();
-
-
                     switch (person.Z)
                     {
                         case 0:
@@ -264,7 +252,6 @@ namespace TjuvOchPolis
                     }
                 }
                 Thread.Sleep(200);
-
             }
         }
 
@@ -316,7 +303,7 @@ namespace TjuvOchPolis
                 int rows = 11;
                 int cols = 37;
                 int randomX = random.Next(1, 10);
-                int randomY = random.Next(26, 36);
+                int randomY = random.Next(27, 35);
 
                 if (person.X < 100 && person.Y < 25)
                 {
