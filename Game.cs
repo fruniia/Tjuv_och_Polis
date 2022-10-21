@@ -17,7 +17,6 @@ namespace TjuvOchPolis
         List<Thief> thieves = new List<Thief>();
         int numberOfRobberys = 0;
         Random random = new Random();
-        int freeThieves = 0;
 
         public void StartGame()
         {
@@ -45,7 +44,6 @@ namespace TjuvOchPolis
                 {
                     Thief thief = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(thief);
-                    freeThieves++;
                 }
             }
 
@@ -69,7 +67,6 @@ namespace TjuvOchPolis
                                     {
                                         thieves.Add((Thief)persons[j]);
                                         persons.RemoveAt(j);
-                                        freeThieves--;
                                     }
 
                                     //Ändra P & T till en Stjärna *
@@ -300,7 +297,6 @@ namespace TjuvOchPolis
             Console.SetCursorPosition(0, 26);
             MyPrison.DrawGrid(thieves);
             Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
-            Console.WriteLine($"Antal tjuvar på fri fot: {freeThieves}");
 
             foreach (Thief person in thieves)
             {
