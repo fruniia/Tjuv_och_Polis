@@ -10,11 +10,14 @@ namespace TjuvOchPolis
     {
         public List<Thing> StolenGoods = new List<Thing>();
         public bool Arrested;
+        public int NumberOfStolenGoods;
         public Thief(int InitialX, int InitialY, int Direction) : base(InitialX, InitialY, Direction)
         {
             PlayerMarker = "T";
             PlayerColor = ConsoleColor.Red;
             Arrested = false;
+            NumberOfStolenGoods = 0;
+
         }
 
         public void AddGoods(List<Thing> things, int oneThing)

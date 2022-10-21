@@ -16,6 +16,7 @@ namespace TjuvOchPolis
         List<Person> persons = new List<Person>();
         List<Thief> thieves = new List<Thief>();
         int numberOfRobberys = 0;
+        int freeThieves = 0;
         Random random = new Random();
 
         public void StartGame()
@@ -29,29 +30,29 @@ namespace TjuvOchPolis
 
             for (int i = 0; i < 30; i++)
             {
-                int direction = random.Next(0, 8);
+                int direction = random.Next(0, 9);
 
                 Citizen citizen = new(random.Next(rows), random.Next(cols), direction);
                 persons.Add(citizen);
 
-                if (i < 30)
+                if (i < 10)
                 {
                     Police police = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(police);
 
                 }
-                if (i < 30)
+                if (i < 20)
                 {
                     Thief thief = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(thief);
+                    freeThieves++;
                 }
             }
 
             while (true)
             {
                 Draw();
-                //Kolla positionerna gentemot varandra.
-                //for loop x 2
+
                 for (int i = 0; i < persons.Count; i++)
                 {
                     for (int j = 0; j < persons.Count; j++)
@@ -63,12 +64,14 @@ namespace TjuvOchPolis
                                 if (((Thief)persons[j]).StolenGoods.Count > 0)
                                 {
                                     ((Police)persons[i]).AddGoods(((Thief)persons[j]).StolenGoods);
+                                    ((Thief)persons[j]).NumberOfStolenGoods = ((Thief)persons[j]).StolenGoods.Count;
                                     ((Thief)persons[j]).StolenGoods.Clear();
                                     ((Thief)persons[j]).Arrested = true;
                                     if (((Thief)persons[j]).Arrested == true)
                                     {
                                         thieves.Add((Thief)persons[j]);
                                         persons.RemoveAt(j);
+                                        freeThieves--;
                                     }
 
                                     //Ändra P & T till en Stjärna *
@@ -104,22 +107,13 @@ namespace TjuvOchPolis
             {
                 Console.Clear();
                 MyCity.DrawGrid();
-                //MyPrison.DrawGrid(thieves);
-                //Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
                 DrawThief();
-                ListOfPersons();
+                //ListOfPersons();
 
 
                 foreach (Person person in persons)
                 {
-                    if (person is Thief && ((Thief)person).Arrested == true)
-                    {
-                        rows = MyPrison.Rows;
-                        cols = MyPrison.Cols;
-                        ((Thief)person).Draw();
-                    }
                     person.Draw();
-
 
                     switch (person.Z)
                     {
@@ -263,8 +257,7 @@ namespace TjuvOchPolis
                         case 8: person.StayStill(); break;
                     }
                 }
-                Thread.Sleep(200);
-
+                Thread.Sleep(50);
             }
         }
 
@@ -310,22 +303,25 @@ namespace TjuvOchPolis
             Console.SetCursorPosition(0, 26);
             MyPrison.DrawGrid(thieves);
             Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
+            Console.WriteLine($"Antal tjuvar på fri fot: {freeThieves}");
 
-            foreach (Thief person in thieves)
+            foreach (Thief person in thieves.ToList())
             {
                 int rows = 11;
                 int cols = 37;
                 int randomX = random.Next(1, 10);
-                int randomY = random.Next(26, 36);
+                int randomY = random.Next(27, 35);
 
                 if (person.X < 100 && person.Y < 25)
                 {
                     person.X = randomX;
                     person.Y = randomY;
+                    person.NumberOfStolenGoods *= 20;
                 }
 
                 person.Draw();
-                
+
+
                 switch (person.Z)
                 {
                     case 0:
@@ -414,7 +410,7 @@ namespace TjuvOchPolis
                         {
                             if (person.X == 1)
                             {
-                                person.X = (cols-1) - person.Y;
+                                person.X = (cols - 1) - person.Y;
                                 person.Y = 27;
                             }
                             else if (person.Y == cols - 1)
@@ -467,7 +463,18 @@ namespace TjuvOchPolis
                         break;
                     case 8: person.StayStill(); break;
                 }
+                person.NumberOfStolenGoods--;
+                if (person.NumberOfStolenGoods == 0)
+                {
+                    person.Arrested = false;
+                    thieves.Remove(person);
+                    person.Y = random.Next(0, 25);
+                    person.X = random.Next(0, 100);
+                    persons.Add(person);
+                    freeThieves++;
+                }
             }
+
 
         }
     }
