@@ -47,10 +47,13 @@ namespace TjuvOchPolis
                     persons.Add(thief);
                     freeThieves++;
                 }
+
             }
 
             while (true)
             {
+                Console.SetCursorPosition(0, 0);
+                MyCity.DrawGrid();
                 Draw();
 
                 for (int i = 0; i < persons.Count; i++)
@@ -76,8 +79,11 @@ namespace TjuvOchPolis
 
                                     //Ändra P & T till en Stjärna *
                                     Console.SetCursorPosition(35, 26);
-                                    Console.WriteLine($"Polis tar tjuv på position {persons[i].X} {persons[i].Y}");
+                                    Console.WriteLine($"Polis tar tjuv på position {persons[i].X}, {persons[i].Y}");
                                     Thread.Sleep(2000);
+                                    Console.SetCursorPosition(35, 26);
+                                    Console.WriteLine($"                                    ");
+
                                 }
 
                             }
@@ -91,8 +97,10 @@ namespace TjuvOchPolis
                                     ((Thief)persons[j]).AddGoods(((Citizen)persons[i]).Belongings, removeThing);
                                     ((Citizen)persons[i]).RemoveGoods(removeThing);
                                     Console.SetCursorPosition(35, 27);
-                                    Console.WriteLine($"Tjuv rånar medborgare på position {persons[i].X} {persons[i].Y}");
+                                    Console.WriteLine($"Tjuv rånar medborgare på position {persons[i].X}, {persons[i].Y}");
                                     Thread.Sleep(2000);
+                                    Console.SetCursorPosition(35, 27);
+                                    Console.WriteLine("                                          ");
                                     //Ändra C & T till en Stjärna *
                                 }
                             }
@@ -105,15 +113,15 @@ namespace TjuvOchPolis
 
             void Draw()
             {
-                Console.Clear();
-                MyCity.DrawGrid();
-                DrawThief();
+                //Console.Clear();
+                //DrawThief();
                 //ListOfPersons();
 
 
                 foreach (Person person in persons)
                 {
                     person.Draw();
+
 
                     switch (person.Z)
                     {
@@ -256,8 +264,9 @@ namespace TjuvOchPolis
                             break;
                         case 8: person.StayStill(); break;
                     }
+
                 }
-                Thread.Sleep(50);
+                Thread.Sleep(15);
             }
         }
 
@@ -265,10 +274,19 @@ namespace TjuvOchPolis
         private void ListOfPersons()
         {
             int count = 0;
+
             for (int i = 0; i < persons.Count; i++)
             {
-                Console.SetCursorPosition(101, count);
 
+                Console.SetCursorPosition(101, count);
+                Console.WriteLine($"                                                                               ");
+                if (persons.Count < 60)  // Hårdkodat talet. Ändras totalen i listan måste man sätta samma tal till höger om <.
+                {
+                    Console.SetCursorPosition(101,persons.Count);
+                    Console.WriteLine($"                                                                               ");
+                    Console.WriteLine($"                                                                               ");
+                }
+                Console.SetCursorPosition(101, count);
                 Console.Write($"{persons[i].GetType().Name}:\t{persons[i].X}, {persons[i].Y}\t");
                 if (persons[i] is Citizen)
                 {
@@ -295,6 +313,7 @@ namespace TjuvOchPolis
                     }
                 }
                 Console.WriteLine($"");
+
                 count++;
             }
         }
