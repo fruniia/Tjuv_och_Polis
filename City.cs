@@ -29,7 +29,6 @@ namespace TjuvOchPolis
                 }
                 Console.WriteLine();
             }
-            
             Console.WriteLine();
         }
     }

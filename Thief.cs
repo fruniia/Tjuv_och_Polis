@@ -17,7 +17,6 @@ namespace TjuvOchPolis
             PlayerColor = ConsoleColor.Red;
             Arrested = false;
             NumberOfStolenGoods = 0;
-
         }
 
         public void AddGoods(List<Thing> things, int oneThing)

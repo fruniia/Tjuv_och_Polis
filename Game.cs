@@ -15,7 +15,7 @@ namespace TjuvOchPolis
         string[,] prison = new string[11, 11];
         List<Person> persons = new List<Person>();
         List<Thief> thieves = new List<Thief>();
-        int numberOfRobberys = 0;
+        int numberOfRobbers = 0;
         int freeThieves = 0;
         Random random = new Random();
 
@@ -39,15 +39,14 @@ namespace TjuvOchPolis
                 {
                     Police police = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(police);
-
                 }
+
                 if (i < 20)
                 {
                     Thief thief = new(random.Next(rows), random.Next(cols), direction);
                     persons.Add(thief);
                     freeThieves++;
                 }
-
             }
 
             while (true)
@@ -83,23 +82,21 @@ namespace TjuvOchPolis
                                     Thread.Sleep(2000);
                                     Console.SetCursorPosition(35, 26);
                                     Console.WriteLine($"                                    ");
-
                                 }
-
                             }
+
                             if (persons[i] is Citizen && persons[j] is Thief)
                             {
                                 if (((Citizen)persons[i]).Belongings.Count > 0)
                                 {
-                                    numberOfRobberys++;
-
-                                    int removeThing = random.Next(0, ((Citizen)persons[i]).Belongings.Count);
+                                    numberOfRobbers++;
+                                    int removeThing = random.Next(0,((Citizen)persons[i]).Belongings.Count);
                                     ((Thief)persons[j]).AddGoods(((Citizen)persons[i]).Belongings, removeThing);
                                     ((Citizen)persons[i]).RemoveGoods(removeThing);
-                                    Console.SetCursorPosition(35, 27);
+                                    Console.SetCursorPosition(35,27);
                                     Console.WriteLine($"Tjuv rånar medborgare på position {persons[i].X}, {persons[i].Y}");
                                     Thread.Sleep(2000);
-                                    Console.SetCursorPosition(35, 27);
+                                    Console.SetCursorPosition(35,27);
                                     Console.WriteLine("                                          ");
                                     //Ändra C & T till en Stjärna *
                                 }
@@ -117,11 +114,10 @@ namespace TjuvOchPolis
                 //DrawThief();
                 //ListOfPersons();
 
-
                 foreach (Person person in persons)
                 {
+                    
                     person.Draw();
-
 
                     switch (person.Z)
                     {
@@ -264,9 +260,8 @@ namespace TjuvOchPolis
                             break;
                         case 8: person.StayStill(); break;
                     }
-
                 }
-                Thread.Sleep(15);
+                Thread.Sleep(30);
             }
         }
 
@@ -319,9 +314,9 @@ namespace TjuvOchPolis
         }
         private void DrawThief()
         {
-            Console.SetCursorPosition(0, 26);
+            Console.SetCursorPosition(0,26);
             MyPrison.DrawGrid(thieves);
-            Console.WriteLine($"Antal rånade personer: {numberOfRobberys}");
+            Console.WriteLine($"Antal rånade personer: {numberOfRobbers}");
             Console.WriteLine($"Antal tjuvar på fri fot: {freeThieves}");
 
             foreach (Thief person in thieves.ToList())
@@ -493,8 +488,6 @@ namespace TjuvOchPolis
                     freeThieves++;
                 }
             }
-
-
         }
     }
 }

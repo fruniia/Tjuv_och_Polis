@@ -12,7 +12,6 @@ namespace TjuvOchPolis
         public Thing()
         {
             thingName = "";
-        }
-        
+        } 
     }
 }
