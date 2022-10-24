@@ -77,6 +77,8 @@ namespace TjuvOchPolis
                                     }
                                     Console.SetCursorPosition(35, 26);
                                     Console.WriteLine($"Polis tar tjuv på position {persons[i].X}, {persons[i].Y}");
+                                    Console.SetCursorPosition(persons[i].X, persons[i].Y);
+                                    Console.Write("[!]");
                                     Thread.Sleep(2000);
                                     Console.SetCursorPosition(35, 26);
                                     Console.WriteLine($"                                    ");
@@ -93,6 +95,8 @@ namespace TjuvOchPolis
                                     ((Citizen)persons[i]).RemoveGoods(removeThing);
                                     Console.SetCursorPosition(35,27);
                                     Console.WriteLine($"Tjuv rånar medborgare på position {persons[i].X}, {persons[i].Y}");
+                                    Console.SetCursorPosition(persons[j].X, persons[j].Y);
+                                    Console.Write("[?]");
                                     Thread.Sleep(2000);
                                     Console.SetCursorPosition(35,27);
                                     Console.WriteLine("                                          ");
