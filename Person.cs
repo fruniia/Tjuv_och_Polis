@@ -27,29 +27,12 @@ namespace TjuvOchPolis
             PlayerColor = ConsoleColor.Magenta;
         }
 
-        public Person(int initialX, int initialY)
-        {
-            this.initialX = initialX;
-            this.initialY = initialY;
-        }
 
         public virtual void AddGoods(List<Thing> things)
         {
                 things.Add(new Thing());
         }
 
-        public virtual void RemoveGoods(List<Thing> things)
-        {
-            things.RemoveAt(things.Count);
-        }
-
-        public void ShowGoods(List<Thing> things) 
-        {
-            foreach (Thing thing in things)
-            { 
-            Console.Write(thing.thingName);
-            }
-        }
 
         public void Draw()
         {
@@ -107,22 +90,5 @@ namespace TjuvOchPolis
             X = X;
             Y = Y;
         }
-
-        //public void DirectionMove(int random)
-        //{
-        //    switch(random)
-        //    {
-        //        case 0: WalkUp(); break;
-        //        case 1: WalkDown(); break;
-        //        case 2: WalkLeft(); break;
-        //        case 3: WalkRight(); break;
-        //        case 4: WalkUpLeft(); break;
-        //        case 5: WalkUpRight(); break;
-        //        case 6: WalkDownLeft(); break;
-        //        case 7: WalkDownRight(); break;
-        //        case 8: StayStill(); break;
-        //    }
-
-        //}
     }
 }

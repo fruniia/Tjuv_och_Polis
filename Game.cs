@@ -75,8 +75,6 @@ namespace TjuvOchPolis
                                         persons.RemoveAt(j);
                                         freeThieves--;
                                     }
-
-                                    //Ändra P & T till en Stjärna *
                                     Console.SetCursorPosition(35, 26);
                                     Console.WriteLine($"Polis tar tjuv på position {persons[i].X}, {persons[i].Y}");
                                     Thread.Sleep(2000);
@@ -98,21 +96,17 @@ namespace TjuvOchPolis
                                     Thread.Sleep(2000);
                                     Console.SetCursorPosition(35,27);
                                     Console.WriteLine("                                          ");
-                                    //Ändra C & T till en Stjärna *
                                 }
                             }
                         }
                     }
                 }
-                //Console.ReadKey();
                 DrawThief();
             }
 
             void Draw()
             {
-                //Console.Clear();
-                //DrawThief();
-                //ListOfPersons();
+                ListOfPersons();
 
                 foreach (Person person in persons)
                 {

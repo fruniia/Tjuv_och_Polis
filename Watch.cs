@@ -10,7 +10,7 @@ namespace TjuvOchPolis
     {
         public Watch() : base()
         {
-            thingName = "watch";
+            thingName = "Watch";
         }
     }
 }

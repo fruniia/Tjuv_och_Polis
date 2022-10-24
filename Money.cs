@@ -10,7 +10,7 @@ namespace TjuvOchPolis
     {
         public Money() : base()
         {
-            thingName = "money";
+            thingName = "Money";
         }
     }
 }
